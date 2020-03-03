@@ -1,10 +1,13 @@
-package com.example.demo;
+package com.example.demo.board.domain;
+
+import org.hibernate.annotations.Where;
 
 import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.util.List;
 
 //primary key 를 가져야한다.
 @Entity
@@ -24,6 +27,23 @@ public class Board {
     @Email
     @Column(name = "email", unique = true)
     private String email;
+
+    @Embedded
+    private Address address;
+
+    @OneToMany(fetch = FetchType.EAGER)
+    @JoinColumn(name = "parentId", referencedColumnName = "id")
+    @OrderBy("id DESC")
+    @Where(clause = "deleted = false")
+    private List<Reply> reply;
+
+    public List<Reply> getReply() {
+        return reply;
+    }
+
+    public void setReply(List<Reply> reply) {
+        this.reply = reply;
+    }
 
     public String getEmail() {
         return email;

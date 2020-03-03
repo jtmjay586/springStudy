@@ -1,9 +1,13 @@
-package com.example.demo;
+package com.example.demo.board.ui;
 
+import com.example.demo.board.domain.BadRequestException;
+import com.example.demo.board.domain.Board;
+import com.example.demo.board.domain.BoardDto;
+import com.example.demo.board.domain.ErrorResponse;
+import com.example.demo.board.infra.BoardRepository;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.repository.query.Param;
@@ -15,8 +19,6 @@ import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import java.util.List;
-import java.util.NoSuchElementException;
 import java.util.Optional;
 
 //controller와의 비교점

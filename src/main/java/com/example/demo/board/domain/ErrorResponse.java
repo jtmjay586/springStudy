@@ -1,4 +1,4 @@
-package com.example.demo;
+package com.example.demo.board.domain;
 
 public class ErrorResponse {
     String code;
